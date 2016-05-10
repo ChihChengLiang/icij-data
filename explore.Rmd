@@ -1,0 +1,35 @@
+---
+title: "explore"
+author: "chihchengliang"
+date: "2016年5月10日"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(data.table)
+library(stringr)
+```
+
+```{r}
+officers_df <- fread("offshore_leaks_csvs/Officers.csv") %>% tbl_df()
+taiwan_officers_df <- officers_df %>% filter(country_codes =="TWN")
+```
+
+```{r}
+officers_df %>% count(country_codes, sort = T)
+```
+
+```{r}
+officers_df %>% filter(str_detect(name, "CHIANG, YI"))
+```
+
+
+```{r}
+entities_df <- fread("offshore_leaks_csvs/Entities.csv", stringsAsFactors = F)
+entities_df %>% glimpse()
+taiwan_entities_df <- entities_df %>% filter(country_codes =="TWN")
+
+```
+
+
